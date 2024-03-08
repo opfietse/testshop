@@ -1,5 +1,6 @@
 package nl.minbzk.rig.demo.testshop.rest.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.minbzk.rig.demo.testshop.jpa.model.Order;
 
 import java.util.List;
