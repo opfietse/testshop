@@ -1,4 +1,4 @@
-package nl.minbzk.rig.demo.testshop;
+package nl.minbzk.rig.demo.testshop.mappers;
 
 import nl.minbzk.rig.demo.testshop.rest.model.Customer;
 

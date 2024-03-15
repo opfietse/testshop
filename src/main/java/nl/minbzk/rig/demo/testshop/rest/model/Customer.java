@@ -1,6 +1,5 @@
 package nl.minbzk.rig.demo.testshop.rest.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.minbzk.rig.demo.testshop.jpa.model.Order;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public class Customer {
     private String customerNumber;
     private String emailAddress;
 
-    private List<Order> aanvragen;
+    private List<Order> orders;
 
     public Customer id(Long id) {
         this.id = id;
@@ -49,7 +48,7 @@ public class Customer {
         return emailAddress;
     }
 
-    public List<Order> getAanvragen() {
-        return aanvragen;
+    public List<Order> getOrders() {
+        return orders;
     }
 }

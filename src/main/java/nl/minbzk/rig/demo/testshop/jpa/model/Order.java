@@ -1,10 +1,10 @@
 package nl.minbzk.rig.demo.testshop.jpa.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "orders")
 public class Order extends BaseEntity {
@@ -20,42 +20,61 @@ public class Order extends BaseEntity {
     @JoinColumn(name="order_reviewer_id")
     private OrderReviewer orderReviewer;
 
-    @ManyToOne
-    @JoinColumn(name="subcategory_id", nullable = false)
-    private Subcategory subcategory;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderLine> orderLines = new ArrayList<>();
 
     public Order id(Long id) {
         this.id = id;
         return this;
     }
 
-    public Order aanvraagdatum(LocalDate aanvraagdatum) {
-        this.orderDate = aanvraagdatum;
+    public Order orderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
         return this;
     }
 
-    public Order beslissingsdatum(LocalDate beslissingsdatum) {
-        this.orderStatusDate = beslissingsdatum;
+    public Order orderStatusDate(LocalDate orderStatusDate) {
+        this.orderStatusDate = orderStatusDate;
         return this;
     }
 
-    public Order beslissing(String beslissing) {
-        this.orderStatus = beslissing;
+    public Order orderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
         return this;
     }
 
-    public Order subcategorie(Subcategory subcategory) {
-        this.subcategory = subcategory;
+    public Order orderLine(OrderLine orderLine) {
+        orderLines.add(orderLine);
+        orderLine.assignToOrder(this);
         return this;
     }
 
-    public Order aanvrager(Customer aanvrager) {
-        this.customer = aanvrager;
+    public Order customer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 
-    public Order behandelaar(OrderReviewer orderReviewer) {
-        this.orderReviewer = orderReviewer;
-        return this;
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public LocalDate getOrderStatusDate() {
+        return orderStatusDate;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
+    public OrderReviewer getOrderReviewer() {
+        return orderReviewer;
     }
 }

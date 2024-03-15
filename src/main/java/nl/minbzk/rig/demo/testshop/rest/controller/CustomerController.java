@@ -1,6 +1,6 @@
 package nl.minbzk.rig.demo.testshop.rest.controller;
 
-import nl.minbzk.rig.demo.testshop.CustomerMapper;
+import nl.minbzk.rig.demo.testshop.mappers.CustomerMapper;
 import nl.minbzk.rig.demo.testshop.rest.model.Customer;
 import nl.minbzk.rig.demo.testshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
