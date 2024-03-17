@@ -1,5 +1,6 @@
 package nl.minbzk.rig.demo.testshop.service;
 
+import nl.minbzk.rig.demo.testshop.TestshopException;
 import nl.minbzk.rig.demo.testshop.jpa.model.Order;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.CustomerRepository;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.OrderRepository;
@@ -32,7 +33,7 @@ public class OrderService {
             ;
             orderRepository.save(order1);
         }, () -> {
-            throw new RuntimeException("Customer not found");
+            throw new TestshopException("Customer not found");
         });
     }
 
@@ -44,10 +45,10 @@ public class OrderService {
                     .orderStatusDate(LocalDate.now());
                 orderRepository.save(dbOrder);
             }, () -> {
-                throw new RuntimeException("Order not found");
+                throw new TestshopException("Order not found");
             });
         }, () -> {
-            throw new RuntimeException("Customer not found");
+            throw new TestshopException("Customer not found");
         });
     }
 }
