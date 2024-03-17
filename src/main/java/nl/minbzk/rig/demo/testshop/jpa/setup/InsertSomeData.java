@@ -37,9 +37,11 @@ public class InsertSomeData {
         Category category = categorieRepository.save(new Category().name("Computers"));
 
         Subcategory sbc = subcategorieRepository.save(new Subcategory().name("SBC").categorie(category));
+        Subcategory accessoires = subcategorieRepository.save(new Subcategory().name("Accessoires").categorie(category));
         subcategorieRepository.save(new Subcategory().name("Monitor").categorie(category));
 
         Article raspberryPi = articleRepository.save(new Article().name("Raspberry Pi 5 4GB").subcategorie(sbc));
+        Article sdcard = articleRepository.save(new Article().name("SD card 64GB").subcategorie(accessoires));
 
         OrderReviewer orderReviewer = orderReviewerRepository.save(new OrderReviewer().name("Mark Rutte"));
 
@@ -50,10 +52,16 @@ public class InsertSomeData {
         orderRepository.save(
                 new Order()
                         .customer(customer)
+                        .orderStatus("IN_REVIEW")
                         .orderDate(LocalDate.now())
                         .orderLine(
                                 new OrderLine()
                                         .article(raspberryPi)
+                                        .quantity(2)
+                        )
+                        .orderLine(
+                                new OrderLine()
+                                        .article(sdcard)
                                         .quantity(2)
                         )
         );

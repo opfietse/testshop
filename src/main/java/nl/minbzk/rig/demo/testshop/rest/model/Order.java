@@ -7,6 +7,7 @@ public class Order {
     private Long id;
     private Long customerId;
     private LocalDate orderDate;
+    private String orderStatus;
     private LocalDate orderStatusDate;
 
     private List<OrderLine> orderLines;
@@ -31,6 +32,11 @@ public class Order {
         return this;
     }
 
+    public Order orderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+        return this;
+    }
+
     public Order orderStatusDate(LocalDate orderStatusDate) {
         this.orderStatusDate = orderStatusDate;
         return this;
@@ -50,6 +56,10 @@ public class Order {
 
     public LocalDate getOrderDate() {
         return orderDate;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
     public LocalDate getOrderStatusDate() {

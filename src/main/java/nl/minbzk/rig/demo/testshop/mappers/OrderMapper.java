@@ -17,6 +17,7 @@ public class OrderMapper {
                 .id(order.getId())
                 .customerId(order.getCustomer().getId())
                 .orderDate(order.getOrderDate())
+            .orderStatus(order.getOrderStatus())
                 .orderStatusDate(order.getOrderStatusDate())
                 .orderLines(order.getOrderLines().stream().map(o1 -> orderLineMapper.jpaToApi(o1)).toList())
                 ;
@@ -26,7 +27,7 @@ public class OrderMapper {
         return new nl.minbzk.rig.demo.testshop.jpa.model.Order()
                 .customer(customer)
                 .orderDate(order.getOrderDate())
-                .orderStatusDate(LocalDate.now())
+                .orderStatusDate(order.getOrderStatusDate())
                 .orderStatus("REVIEW")
                 ;
     }

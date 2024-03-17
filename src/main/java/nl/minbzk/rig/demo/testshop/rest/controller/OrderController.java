@@ -34,4 +34,9 @@ public class OrderController {
     public void addOrder(@PathVariable Long customerId, @RequestBody Order order) {
         orderService.addOrder(order, customerId);
     }
+
+    @PatchMapping(value = "orders/{orderId}" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void changeOrder(@PathVariable Long customerId, @PathVariable Long orderId, @RequestBody Order order) {
+        orderService.changeOrder(order, customerId, orderId);
+    }
 }

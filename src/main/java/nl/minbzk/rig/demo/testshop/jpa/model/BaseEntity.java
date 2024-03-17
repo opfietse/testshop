@@ -11,6 +11,11 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
+    public BaseEntity id(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public Long getId() {
         return id;
     }

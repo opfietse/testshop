@@ -77,4 +77,12 @@ public class Order extends BaseEntity {
     public OrderReviewer getOrderReviewer() {
         return orderReviewer;
     }
+
+    public abstract class ORDER_STATUS {
+        public static final String IN_REVIEW = "IN_REVIEW";
+        public static final String APPROVED = "APPROVED";
+        public static final String REJECTED = "REJECTED";
+        public static final String DELIVERD = "DELIVERD";
+        public static final String PAID = "PAID";
+    }
 }
