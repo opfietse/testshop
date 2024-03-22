@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class OrderService {
@@ -28,29 +29,33 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public void addOrder(nl.minbzk.rig.demo.testshop.rest.model.Order order, Long customerId) {
+    public Long addOrder(nl.minbzk.rig.demo.testshop.rest.model.Order order, Long customerId) {
+        AtomicLong orderId = new AtomicLong();
+
         customerRepository.findById(customerId).ifPresentOrElse(customer -> {
             Order order1 = orderMapper.apiToJpa(order, customer);
             order1
               .orderStatus(Order.ORDER_STATUS.IN_REVIEW)
               .orderDate(LocalDate.now())
             ;
-            orderRepository.save(order1);
+            orderId.set(orderRepository.save(order1).getId());
         }, () -> {
             throw new TestshopException("Customer not found");
         });
+
+        return orderId.get();
     }
 
-    public void changeOrder(nl.minbzk.rig.demo.testshop.rest.model.Order order, Long customerId, Long orderId, Long reviewerId) {
+    public void changeOrder(nl.minbzk.rig.demo.testshop.rest.model.ReviewDecision reviewDecision, Long customerId, Long orderId, Long reviewerId) {
         customerRepository.findById(customerId).ifPresentOrElse(
           customer -> orderReviewerRepository.findById(reviewerId).ifPresentOrElse(
             reviewer -> orderRepository.findById(orderId).ifPresentOrElse(
               dbOrder -> {
-                  if (order.getOrderStatus().equals(Order.ORDER_STATUS.APPROVED) || order.getOrderStatus().equals(Order.ORDER_STATUS.REJECTED)) {
+                  if (reviewDecision.getDecision().equals(Order.ORDER_STATUS.APPROVED) || reviewDecision.getDecision().equals(Order.ORDER_STATUS.REJECTED)) {
                       if (dbOrder.getOrderStatus().equals(Order.ORDER_STATUS.IN_REVIEW)) {
                           dbOrder
                             .orderReviewer(reviewer)
-                            .orderStatus(order.getOrderStatus())
+                            .orderStatus(reviewDecision.getDecision())
                             .orderStatusDate(LocalDate.now());
                       } else throw new IllegalStateException("Order not in review");
                   } else throw new IllegalArgumentException("No review status given");

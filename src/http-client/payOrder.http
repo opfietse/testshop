@@ -1,8 +1,8 @@
-POST localhost:8080/customers/2/orders/2/pay
+POST localhost:8080/customers/2/orders/52/pay
 Content-Type: application/json
 
 {
-  "amount": 124.00
+  "amount": 148.00
 }
 
 ###
