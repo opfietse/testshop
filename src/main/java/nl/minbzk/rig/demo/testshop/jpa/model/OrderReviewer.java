@@ -14,7 +14,7 @@ public class OrderReviewer extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy =  "orderReviewer")
-    private List<Order> aanvragen = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     public OrderReviewer id(Long id) {
         this.id = id;
@@ -26,8 +26,16 @@ public class OrderReviewer extends BaseEntity {
         return this;
     }
 
-    public OrderReviewer aanvraag(Order order) {
-        this.aanvragen.add(order);
+    public OrderReviewer order(Order order) {
+        this.orders.add(order);
         return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }

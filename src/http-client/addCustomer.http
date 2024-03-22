@@ -1,0 +1,18 @@
+# curl --location 'localhost:8080/customers'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "name": "Hans Huisman",
+#    "customerNumber": "656565",
+#    "emailAddress": "hans@huisman.nl"
+#}'
+POST localhost:8080/customers
+Content-Type: application/json
+
+{
+  "name": "Hans Huisman",
+  "customerNumber": "656565",
+  "emailAddress": "hans@huisman.nl"
+}
+
+###
+

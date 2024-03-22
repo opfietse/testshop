@@ -43,6 +43,11 @@ public class Order extends BaseEntity {
         return this;
     }
 
+    public Order orderReviewer(OrderReviewer orderReviewer) {
+        this.orderReviewer = orderReviewer;
+        return this;
+    }
+
     public Order orderLine(OrderLine orderLine) {
         orderLines.add(orderLine);
         orderLine.assignToOrder(this);

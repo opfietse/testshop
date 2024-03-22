@@ -1,0 +1,30 @@
+PATCH localhost:8080/customers/2/orders/2/reviewer/1
+Content-Type: application/json
+
+{
+  "id": 2,
+  "customerId": 2,
+  "orderDate": [
+    2024,
+    3,
+    22
+  ],
+  "orderStatus": "APPROVED",
+  "orderStatusDate": null,
+  "orderLines": [
+    {
+      "id": 52,
+      "orderId": 2,
+      "article": "Raspberry Pi 5 4GB",
+      "quantity": 1
+    },
+    {
+      "id": 53,
+      "orderId": 2,
+      "article": "SD card 64GB",
+      "quantity": 1
+    }
+  ]
+}
+###
+

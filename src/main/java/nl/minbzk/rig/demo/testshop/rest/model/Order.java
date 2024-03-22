@@ -10,6 +10,8 @@ public class Order {
     private String orderStatus;
     private LocalDate orderStatusDate;
 
+    private String reviewer;
+
     private List<OrderLine> orderLines;
 
     public Order id(Long id) {
@@ -42,6 +44,11 @@ public class Order {
         return this;
     }
 
+    public Order reviewer(String reviewer) {
+        this.reviewer = reviewer;
+        return this;
+    }
+
     public Long getId() {
         return id;
     }
@@ -64,5 +71,9 @@ public class Order {
 
     public LocalDate getOrderStatusDate() {
         return orderStatusDate;
+    }
+
+    public String getReviewer() {
+        return reviewer;
     }
 }

@@ -43,7 +43,7 @@ public class InsertSomeData {
         Article raspberryPi = articleRepository.save(new Article().name("Raspberry Pi 5 4GB").subcategorie(sbc));
         Article sdcard = articleRepository.save(new Article().name("SD card 64GB").subcategorie(accessoires));
 
-        OrderReviewer orderReviewer = orderReviewerRepository.save(new OrderReviewer().name("Mark Rutte"));
+        orderReviewerRepository.save(new OrderReviewer().name("De Beoordelaar"));
 
         Customer customer = customerRepository.save(
                 new Customer("Mark Reuvekamp", "987654321", "mark@reuvekamp.nl")
@@ -53,7 +53,7 @@ public class InsertSomeData {
                 new Order()
                         .customer(customer)
                         .orderStatus("IN_REVIEW")
-                        .orderDate(LocalDate.now())
+                        .orderDate(LocalDate.of(2024, 2, 29))
                         .orderLine(
                                 new OrderLine()
                                         .article(raspberryPi)

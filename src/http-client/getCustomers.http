@@ -1,0 +1,4 @@
+# curl --location 'localhost:8080/customers'
+GET localhost:8080/customers
+
+###

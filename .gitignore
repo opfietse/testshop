@@ -35,3 +35,4 @@ build/
 ### H2 database ###
 testshop.trace.db
 testshop.mv.db
+testshop.lock.db

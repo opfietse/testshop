@@ -1,0 +1,18 @@
+POST localhost:8080/customers/2/orders
+Content-Type: application/json
+
+{
+  "orderLines": [
+    {
+      "article": "Raspberry Pi 5 4GB",
+      "quantity": 1
+    },
+    {
+      "article": "SD card 64GB",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+
