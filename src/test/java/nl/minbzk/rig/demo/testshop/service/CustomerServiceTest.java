@@ -1,5 +1,6 @@
 package nl.minbzk.rig.demo.testshop.service;
 
+import net.datafaker.Faker;
 import nl.minbzk.rig.demo.testshop.jpa.model.Customer;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.CustomerRepository;
 import org.assertj.core.api.Assertions;
@@ -14,12 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
+    private Faker faker = new Faker();
+
     @InjectMocks
     private CustomerService customerService;
 
@@ -45,5 +49,19 @@ class CustomerServiceTest {
 
         verify(customerRepository).findAll();
         verifyNoMoreInteractions(customerRepository);
+    }
+
+    @Test
+    void a() {
+        // Given
+        nl.minbzk.rig.demo.testshop.rest.model.Customer customer = new nl.minbzk.rig.demo.testshop.rest.model.Customer()
+          .name(faker.name().fullName())
+          .emailAddress(faker.internet().emailAddress())
+          ;
+
+        System.out.println(customer.getEmailAddress());
+
+        // When / Than
+        assertThatNoException().isThrownBy(() -> customerService.addCustomer(customer));
     }
 }
