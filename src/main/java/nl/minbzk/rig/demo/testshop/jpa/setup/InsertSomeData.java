@@ -40,8 +40,8 @@ public class InsertSomeData {
         Subcategory accessoires = subcategorieRepository.save(new Subcategory().name("Accessoires").categorie(category));
         subcategorieRepository.save(new Subcategory().name("Monitor").categorie(category));
 
-        Article raspberryPi = articleRepository.save(new Article().name("Raspberry Pi 5 4GB").subcategorie(sbc));
-        Article sdcard = articleRepository.save(new Article().name("SD card 64GB").subcategorie(accessoires));
+        Article raspberryPi = articleRepository.save(new Article().name("Raspberry Pi 5 4GB").subcategorie(sbc).price(100d));
+        Article sdcard = articleRepository.save(new Article().name("SD card 64GB").subcategorie(accessoires).price(24d));
 
         orderReviewerRepository.save(new OrderReviewer().name("De Beoordelaar"));
 

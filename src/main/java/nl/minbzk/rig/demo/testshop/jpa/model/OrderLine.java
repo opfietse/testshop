@@ -41,7 +41,7 @@ public class OrderLine extends BaseEntity {
         return order;
     }
 
-    public Article getArtile() {
+    public Article getArticle() {
         return article;
     }
 }

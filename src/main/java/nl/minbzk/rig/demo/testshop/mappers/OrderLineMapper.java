@@ -13,17 +13,18 @@ public class OrderLineMapper {
 
     public OrderLine jpaToApi(nl.minbzk.rig.demo.testshop.jpa.model.OrderLine orderLine) {
         return new OrderLine()
-                .id(orderLine.getId())
-                .orderId(orderLine.getOrder().getId())
-                .article(orderLine.getArtile().getName())
-                .quantity(orderLine.getQuantity())
-                ;
+          .id(orderLine.getId())
+          .orderId(orderLine.getOrder().getId())
+          .article(orderLine.getArticle().getName())
+          .unitPrice(orderLine.getArticle().getPrice())
+          .quantity(orderLine.getQuantity())
+          ;
     }
 
     public nl.minbzk.rig.demo.testshop.jpa.model.OrderLine apiToJpa(OrderLine orderLine, Order customer) {
         return new nl.minbzk.rig.demo.testshop.jpa.model.OrderLine()
-                .quantity(orderLine.getQuantity())
-                .article(articleRepository.findByName(orderLine.getArticle()).get())
-                .assignToOrder(customer);
+          .quantity(orderLine.getQuantity())
+          .article(articleRepository.findByName(orderLine.getArticle()).get())
+          .assignToOrder(customer);
     }
 }

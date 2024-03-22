@@ -22,7 +22,7 @@ public class OrderMapper {
           .orderDate(order.getOrderDate())
           .orderStatus(order.getOrderStatus())
           .orderStatusDate(order.getOrderStatusDate())
-          .reviewer(order.getOrderReviewer().getName())
+          .reviewer(order.getOrderReviewer() == null ? null : order.getOrderReviewer().getName())
           .orderLines(order.getOrderLines().stream().map(o1 -> orderLineMapper.jpaToApi(o1)).toList())
           ;
     }

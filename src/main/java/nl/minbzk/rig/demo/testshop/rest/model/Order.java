@@ -1,5 +1,7 @@
 package nl.minbzk.rig.demo.testshop.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -75,5 +77,13 @@ public class Order {
 
     public String getReviewer() {
         return reviewer;
+    }
+
+    @JsonGetter
+    private Double getOrderPrice() {
+        return getOrderLines()
+          .stream()
+          .mapToDouble(orderline -> orderline.getQuantity() * orderline.getUnitPrice())
+          .sum();
     }
 }

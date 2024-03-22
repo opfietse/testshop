@@ -14,6 +14,9 @@ public class Article extends BaseEntity {
     @JoinColumn(name = "subcategorie_id", nullable = false)
     private Subcategory subcategory;
 
+    @Column(nullable = false)
+    private Double price;
+
     public Article id(Long id) {
         this.id = id;
         return this;
@@ -29,7 +32,20 @@ public class Article extends BaseEntity {
         return this;
     }
 
+    public Article price(Double price) {
+        this.price = price;
+        return this;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public Subcategory getSubcategory() {
+        return subcategory;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 }

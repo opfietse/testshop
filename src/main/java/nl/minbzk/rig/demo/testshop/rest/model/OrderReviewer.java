@@ -1,9 +1,5 @@
 package nl.minbzk.rig.demo.testshop.rest.model;
 
-import nl.minbzk.rig.demo.testshop.jpa.model.Order;
-
-import java.util.List;
-
 public class OrderReviewer {
     private Long id;
     private String name;

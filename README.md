@@ -5,7 +5,7 @@
 -       Gebruik ook edge cases (extreem lang e-mailadres bijvoorbeeld) 
 -	Controleer de waarde van constanten
 -	Vul collecties altijd met meer dan 1 object
--	Gebruik  zoveel mogelijk vaste waardes (LocatDate.of(2024, 2 16) ipv LOcalDate.now())
+-	Gebruik zoveel mogelijk vaste waardes (LocalDate.of(2024, 2 16) i.p.v. LocalDate.now())
 -	Gebruik zo weinig mogelijk Mockito.any() (anyString(), anyAbc… enz)
 -	Controleer of de verwachte aanroepen zijn gedaan
 -	Controleer dat er niet méér dan de verwachte aanroepen zijn gedaan (verifyNoMoreInteractions, verifyNoInteractions)

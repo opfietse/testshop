@@ -2,6 +2,7 @@ package nl.minbzk.rig.demo.testshop.rest.controller;
 
 import nl.minbzk.rig.demo.testshop.mappers.OrderMapper;
 import nl.minbzk.rig.demo.testshop.rest.model.Order;
+import nl.minbzk.rig.demo.testshop.rest.model.Payment;
 import nl.minbzk.rig.demo.testshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -38,5 +39,10 @@ public class OrderController {
     @PatchMapping(value = "orders/{orderId}/reviewer/{reviewerId}" , consumes = MediaType.APPLICATION_JSON_VALUE)
     public void changeOrder(@PathVariable Long customerId, @PathVariable Long orderId, @PathVariable Long reviewerId, @RequestBody Order order) {
         orderService.changeOrder(order, customerId, orderId, reviewerId);
+    }
+
+    @PostMapping(value = "orders/{orderId}/pay" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void payOrder(@PathVariable Long customerId, @PathVariable Long orderId, @RequestBody Payment payment) {
+        orderService.payOrder(payment, customerId, orderId);
     }
 }

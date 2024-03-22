@@ -4,6 +4,7 @@ public class OrderLine {
     private Long id;
     private Long orderId;
     private String article;
+    private Double unitPrice;
 
     private Integer quantity;
 
@@ -19,6 +20,11 @@ public class OrderLine {
 
     public OrderLine article(String article) {
         this.article = article;
+        return this;
+    }
+
+    public OrderLine unitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
         return this;
     }
 
@@ -41,5 +47,9 @@ public class OrderLine {
 
     public Integer getQuantity() {
         return quantity;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
     }
 }
