@@ -1,0 +1,67 @@
+# curl --location 'localhost:8080/customers'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "name": "Hans Huisman",
+#    "customerNumber": "656565",
+#    "emailAddress": "hans@huisman.nl"
+#}'
+POST localhost:8080/customers
+Content-Type: application/json
+
+{
+  "name": "Hans Huisman",
+  "customerNumber": "656565",
+  "emailAddress": "hans2@huisman.nl"
+}
+
+> {%
+    client.test("set customer number as global variable", function() {
+        if (response.status === 200) {
+            client.global.set("customerNumber", response.body);
+        }
+    });
+%}
+
+###
+
+POST localhost:8080/customers/{{customerNumber}}/orders
+Content-Type: application/json
+
+{
+  "orderLines": [
+    {
+      "article": "Raspberry Pi 5 4GB",
+      "quantity": 1
+    },
+    {
+      "article": "SD card 64GB",
+      "quantity": 2
+    }
+  ]
+}
+
+> {%
+    client.test("set order number as global variable", function() {
+        if (response.status === 200) {
+            client.global.set("orderNumber", response.body);
+        }
+    });
+%}
+
+###
+POST localhost:8080/customers/{{customerNumber}}/orders/{{orderNumber}}/reviewer/1
+Content-Type: application/json
+
+{
+  "decision": "APPROVED"
+}
+
+###
+POST localhost:8080/customers/{{customerNumber}}/orders/{{orderNumber}}/pay
+Content-Type: application/json
+
+{
+  "amount": 148.00
+}
+
+###

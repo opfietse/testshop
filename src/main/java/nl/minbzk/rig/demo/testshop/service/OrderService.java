@@ -112,7 +112,7 @@ public class OrderService {
           .filter(order -> order.getOrderStatus().equals(Order.ORDER_STATUS.WAREHOUSE))
           .forEach(order -> {
               System.out.println("  deliver order #" + order.getId());
-              order.orderStatus(Order.ORDER_STATUS.DELIVERD);
+              order.orderStatus(Order.ORDER_STATUS.DELIVERED);
               orderRepository.save(order);
           });
     }

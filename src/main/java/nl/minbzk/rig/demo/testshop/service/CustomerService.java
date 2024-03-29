@@ -18,11 +18,13 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void addCustomer(nl.minbzk.rig.demo.testshop.rest.model.Customer customer) {
+    public Long addCustomer(nl.minbzk.rig.demo.testshop.rest.model.Customer customer) {
         checkEmailAddress(customer.getEmailAddress());
 
         Customer customer1 = CustomerMapper.apiToJpa(customer);
         customerRepository.save(customer1);
+
+        return customer1.getId();
     }
 
     private void checkEmailAddress(String emailAddress) {

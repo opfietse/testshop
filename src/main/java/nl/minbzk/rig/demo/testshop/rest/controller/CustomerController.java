@@ -26,7 +26,8 @@ public class CustomerController {
     }
 
     @PostMapping(value = "customers" , consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addCustomer(@RequestBody Customer customer) {
-        customerService.addCustomer(customer);
+    @ResponseBody
+    public String addCustomer(@RequestBody Customer customer) {
+        return customerService.addCustomer(customer).toString();
     }
 }

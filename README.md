@@ -1,7 +1,7 @@
 # testshop
 
 -	Gebruik geen standaard waardes
--	Hergebruik geen waardes
+-	Hergebruik geen waardes (dus ook niet bij api-in -> jpa-uit, id's dan we veranderen als je een mocked result teruggeeft
 -       Gebruik ook edge cases (extreem lang e-mailadres bijvoorbeeld) 
 -	Controleer de waarde van constanten
 -	Vul collecties altijd met meer dan 1 object

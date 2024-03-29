@@ -7,7 +7,6 @@ import nl.minbzk.rig.demo.testshop.rest.model.ReviewDecision;
 import nl.minbzk.rig.demo.testshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +33,10 @@ public class OrderController {
     }
 
     @PostMapping(value = "orders" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public String addOrder(@PathVariable Long customerId, @RequestBody Order order) {
+        System.out.println("Add order for customer " + customerId);
+
         return orderService.addOrder(order, customerId).toString();
     }
 
