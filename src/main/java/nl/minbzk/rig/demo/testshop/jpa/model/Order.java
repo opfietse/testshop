@@ -92,7 +92,7 @@ public class Order extends BaseEntity {
 
     public abstract class ORDER_STATUS {
         public static final String IN_REVIEW = "IN_REVIEW";
-        public static final String APPROVED = "APPROVED";
+        public static final String APPROVED = "APROVED";
         public static final String REJECTED = "REJECTED";
         public static final String WAREHOUSE = "IN_WAREHOUSE";
         public static final String DELIVERED = "DELIVERED";
