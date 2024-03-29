@@ -86,7 +86,8 @@ public class OrderService {
                               .orderStatus(Order.ORDER_STATUS.PAID)
                               .orderStatusDate(LocalDate.now());
 
-                            voucherService.issueVoucher(dbOrder.getCustomer().getId(), dbOrder.getId());
+                            // TODO fix this
+                            voucherService.issueVoucher(dbOrder.getId(), dbOrder.getCustomer().getId());
                         } else throw new IllegalArgumentException("Given amount is not sufficient to pay the whole order (" + calculateOrderPrice(dbOrder) + ")");
                     } else throw new IllegalStateException("Order not approved");
 
