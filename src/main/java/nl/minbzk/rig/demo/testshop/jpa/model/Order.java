@@ -83,6 +83,13 @@ public class Order extends BaseEntity {
         return orderReviewer;
     }
 
+    public Double calculateOrderPrice() {
+        return getOrderLines()
+          .stream()
+          .mapToDouble(orderline -> orderline.getQuantity() * orderline.getArticle()    .getPrice())
+          .sum();
+    }
+
     public abstract class ORDER_STATUS {
         public static final String IN_REVIEW = "IN_REVIEW";
         public static final String APPROVED = "APPROVED";

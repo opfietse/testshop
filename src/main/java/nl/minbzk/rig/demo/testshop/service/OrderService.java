@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -24,9 +25,15 @@ public class OrderService {
     private CustomerRepository customerRepository;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    VoucherService voucherService;
 
     public List<Order> fetchAllOrders() {
         return orderRepository.findAll();
+    }
+
+    public Optional<Order> findById(Long id) {
+        return orderRepository.findById(id);
     }
 
     public Long addOrder(nl.minbzk.rig.demo.testshop.rest.model.Order order, Long customerId) {
@@ -78,6 +85,8 @@ public class OrderService {
                             dbOrder
                               .orderStatus(Order.ORDER_STATUS.PAID)
                               .orderStatusDate(LocalDate.now());
+
+                            voucherService.issueVoucher(dbOrder.getCustomer().getId(), dbOrder.getId());
                         } else throw new IllegalArgumentException("Given amount is not sufficient to pay the whole order (" + calculateOrderPrice(dbOrder) + ")");
                     } else throw new IllegalStateException("Order not approved");
 
@@ -117,7 +126,7 @@ public class OrderService {
           });
     }
 
-    private Double calculateOrderPrice(Order order) {
+    public Double calculateOrderPrice(Order order) {
         return order
           .getOrderLines()
           .stream()
