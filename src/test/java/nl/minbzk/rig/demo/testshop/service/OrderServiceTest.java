@@ -7,13 +7,11 @@ import nl.minbzk.rig.demo.testshop.jpa.repositories.CustomerRepository;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.OrderRepository;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.OrderReviewerRepository;
 import nl.minbzk.rig.demo.testshop.rest.model.ReviewDecision;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
