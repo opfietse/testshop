@@ -2,6 +2,7 @@ package nl.minbzk.rig.demo.testshop.service;
 
 import nl.minbzk.rig.demo.testshop.TestshopException;
 import nl.minbzk.rig.demo.testshop.jpa.model.Order;
+import nl.minbzk.rig.demo.testshop.jpa.model.OrderLine;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.CustomerRepository;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.OrderRepository;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.OrderReviewerRepository;
@@ -127,10 +128,17 @@ public class OrderService {
     }
 
     public Double calculateOrderPrice(Order order) {
-        return order
-          .getOrderLines()
-          .stream()
-          .mapToDouble(orderline -> orderline.getQuantity() * orderline.getArticle()    .getPrice())
-          .sum();
+        double sum = 0d;
+
+        for (OrderLine orderLine : order.getOrderLines()) {
+            sum = orderLine.getQuantity() * orderLine.getArticle().getPrice();
+        }
+
+        return sum;
+//        return order
+//          .getOrderLines()
+//          .stream()
+//          .mapToDouble(orderline -> orderline.getQuantity() * orderline.getArticle()    .getPrice())
+//          .sum();
     }
 }

@@ -84,10 +84,17 @@ public class Order extends BaseEntity {
     }
 
     public Double calculateOrderPrice() {
-        return getOrderLines()
-          .stream()
-          .mapToDouble(orderline -> orderline.getQuantity() * orderline.getArticle()    .getPrice())
-          .sum();
+        double sum = 0d;
+
+        for (OrderLine orderLine : getOrderLines()) {
+            sum = orderLine.getQuantity() * orderLine.getArticle().getPrice();
+        }
+
+        return sum;
+//        return getOrderLines()
+//          .stream()
+//          .mapToDouble(orderline -> orderline.getQuantity() * orderline.getArticle().getPrice())
+//          .sum();
     }
 
     public abstract class ORDER_STATUS {
