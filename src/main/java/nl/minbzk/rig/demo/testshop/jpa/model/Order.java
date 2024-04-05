@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "orders")
 public class Order extends BaseEntity {
@@ -97,5 +98,24 @@ public class Order extends BaseEntity {
         public static final String WAREHOUSE = "IN_WAREHOUSE";
         public static final String DELIVERED = "DELIVERED";
         public static final String PAID = "PAID";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return /*Objects.equals(orderDate, order.orderDate) && Objects.equals(orderStatusDate, order.orderStatusDate) &&*/ Objects.equals(
+          orderStatus,
+          order.orderStatus
+        ) && Objects.equals(id, order.id) /*&& Objects.equals(customer, order.customer) && Objects.equals(orderReviewer, order.orderReviewer) && Objects.equals(
+          orderLines,
+          order.orderLines
+        )*/;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderDate, orderStatusDate, orderStatus, customer, orderReviewer, orderLines);
     }
 }
