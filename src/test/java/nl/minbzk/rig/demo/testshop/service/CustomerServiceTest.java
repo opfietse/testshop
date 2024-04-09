@@ -1,5 +1,7 @@
 package nl.minbzk.rig.demo.testshop.service;
 
+import com.devskiller.jfairy.Fairy;
+import com.devskiller.jfairy.producer.person.Person;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.CustomerRepository;
 import nl.minbzk.rig.demo.testshop.rest.model.Customer;
 import org.junit.jupiter.api.Test;
@@ -22,11 +24,15 @@ class CustomerServiceTest {
     @Test
     void addCustomer_validEmailAddress_customerAdded() {
         // Given
+//        Fairy fairy = Fairy.create();
+//        Person person = fairy.person();
+//        System.out.println(person.getEmail());
 
         // When
         customerService.addCustomer(
           new Customer()
             .emailAddress("ditis54positieslangendatmagbestvolgensdestandaardaaaaa@reuvekamp.nl")
+//            .emailAddress(person.getEmail())
         );
 
         // Then
