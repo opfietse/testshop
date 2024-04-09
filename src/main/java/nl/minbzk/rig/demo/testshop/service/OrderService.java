@@ -123,7 +123,8 @@ public class OrderService {
               System.out.println("  deliver order #" + order.getId());
               order.orderStatus(Order.ORDER_STATUS.DELIVERED);
               orderRepository.save(order);
-              orderRepository.delete(order);
+
+              processOrderAfterDeivery(order);
           });
     }
 
@@ -133,5 +134,9 @@ public class OrderService {
           .stream()
           .mapToDouble(orderline -> orderline.getQuantity() * orderline.getArticle()    .getPrice())
           .sum();
+    }
+
+    private void processOrderAfterDeivery(Order order) {
+        orderRepository.delete(order);
     }
 }

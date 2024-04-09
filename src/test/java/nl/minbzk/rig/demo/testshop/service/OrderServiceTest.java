@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,5 +37,6 @@ class OrderServiceTest {
         verify(orderRepository).findAll();
         verify(orderRepository).save(new Order().id(1L).orderStatus(Order.ORDER_STATUS.DELIVERED));
         verify(orderRepository).save(new Order().id(2L).orderStatus(Order.ORDER_STATUS.DELIVERED));
+//        verifyNoMoreInteractions(orderRepository);
     }
 }
