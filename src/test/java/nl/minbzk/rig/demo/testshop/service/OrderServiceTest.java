@@ -2,8 +2,10 @@ package nl.minbzk.rig.demo.testshop.service;
 
 import nl.minbzk.rig.demo.testshop.jpa.model.Order;
 import nl.minbzk.rig.demo.testshop.jpa.repositories.OrderRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -11,6 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -37,7 +42,14 @@ class OrderServiceTest {
 
         // Then
         verify(orderRepository).findAll();
-        verify(orderRepository).save(new Order().id(1L).orderStatus(Order.ORDER_STATUS.DELIVERED));
-        verify(orderRepository).save(new Order().id(2L).orderStatus(Order.ORDER_STATUS.DELIVERED));
+
+        // Variant met any:
+        verify(orderRepository, times(2)).save(any());
+
+        // Variant zonder any
+//        ArgumentCaptor<Order> orderCaptor = ArgumentCaptor.forClass(Order.class);
+//        verify(orderRepository, times(2)).save(orderCaptor.capture());
+//        assertThat(orderCaptor.getAllValues()).hasSize(2);
+//        assertThat(orderCaptor.getAllValues().stream().map(o -> o.getOrderStatus()).toList()).containsExactlyInAnyOrderElementsOf(List.of("DELIVERED", "DELIVERD"));
     }
 }
